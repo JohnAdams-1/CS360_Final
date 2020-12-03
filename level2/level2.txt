@@ -1,0 +1,213 @@
+Lucas Mason, Brett Anzlovar - CS Project Level 2
+
+2. Cat output working
+3. Cp files are the same size
+
+4. small - no differences
+   large - no newline at end of file
+   hude  - no newline at end of file
+
+5, 6, 7
+
+checking EXT2 FS ....EXT2 FS OK
+bmp=8 imap=9 inode_start = 10
+init()
+mount_root()
+root refCount = 1
+creating P0 as running process
+root refCount = 2
+input command : [ls|cd|pwd|mkdir|rmdir|touch|symlink|link|unlink|open|read|lseek|write|close|cat|cp|mv|pfd|quit] open tiny 0
+[main]: cmd=open src=tiny dest=0
+[open_file]: i_mode=0
+[getino]: pathname=tiny
+[tokenize]: tiny
+tiny  
+[getino]: ===========================================
+[getino]: i=0 name[0]=tiny
+[search]: for tiny in MINODE = [3, 2]
+[search]:  ino   rlen  nlen  name
+[search]:    2    12     1    .
+[search]:    2    12     2    ..
+[search]:   11    16     5    file1
+[search]:   12    12     4    tiny
+[search]: found tiny : ino = 12
+input command : [ls|cd|pwd|mkdir|rmdir|touch|symlink|link|unlink|open|read|lseek|write|close|cat|cp|mv|pfd|quit] pfd
+[main]: cmd=pfd src= dest=
+
+[pfd]:  fd   mode   offset   INODE
+[pfd]: ---- ------ -------- -------
+[pfd]:   0   READ     0     [3, 12]
+
+input command : [ls|cd|pwd|mkdir|rmdir|touch|symlink|link|unlink|open|read|lseek|write|close|cat|cp|mv|pfd|quit] close 0
+[main]: cmd=close src=0 dest=
+[iput]: inode_start=10
+[iput]: block=11, offset=3
+input command : [ls|cd|pwd|mkdir|rmdir|touch|symlink|link|unlink|open|read|lseek|write|close|cat|cp|mv|pfd|quit] pfd
+[main]: cmd=pfd src= dest=
+
+[pfd]:  fd   mode   offset   INODE
+[pfd]: ---- ------ -------- -------
+
+input command : [ls|cd|pwd|mkdir|rmdir|touch|symlink|link|unlink|open|read|lseek|write|close|cat|cp|mv|pfd|quit] open small 0
+[main]: cmd=open src=small dest=0
+[open_file]: i_mode=0
+[getino]: pathname=small
+[tokenize]: small
+small  
+[getino]: ===========================================
+[getino]: i=0 name[0]=small
+[search]: for small in MINODE = [3, 2]
+[search]:  ino   rlen  nlen  name
+[search]:    2    12     1    .
+[search]:    2    12     2    ..
+[search]:   11    16     5    file1
+[search]:   12    12     4    tiny
+[search]:   13    16     5    small
+[search]: found small : ino = 13
+[iput]: inode_start=10
+[iput]: block=11, offset=4
+input command : [ls|cd|pwd|mkdir|rmdir|touch|symlink|link|unlink|open|read|lseek|write|close|cat|cp|mv|pfd|quit] read 0 500
+[main]: cmd=read src=0 dest=500
+[read_file]: Reading fd=0
+[myread]: fd=0 offset=0 bytes=500
+[myread]: direct block
+[myread]: offset=0 min=500 blk=514
+[myread]: nbytes=500 len(buf)=502 text=                   LAB2 Check List
+
+Use YOUR C program source file in the tests.
+
+// Simple commands
+ls -a -l                       : show the ls results of CWD
+cat file                       : show file contents
+
+// Choose gedit OR nano OR vi OR emacs as the EDITOR
+EDITOR file                    : show you can edit the file
+
+// I/O redirections		   
+cat file > out; ls -l; cat out : show out file exist and show its contents
+cat file >> out; ls -l         : show out file size doubled
+cat < file  �
+input command : [ls|cd|pwd|mkdir|rmdir|touch|symlink|link|unlink|open|read|lseek|write|close|cat|cp|mv|pfd|quit] read 0 500
+[main]: cmd=read src=0 dest=500
+[read_file]: Reading fd=0
+[myread]: fd=0 offset=500 bytes=500
+[myread]: direct block
+[myread]: offset=500 min=500 blk=514
+[myread]: nbytes=500 len(buf)=502 text=                   : show file contents
+
+// PIPES
+cat file | grep printf         : show lines containing printf
+
+cat < file | grep printf > out : show pipe with I/O redirection
+
+cat file | grep printf | more  : two pipes
+      
+cat file | cat | cat | grep printf : multiple pipes
+<html>
+<body>
+<pre>
+                    LAB2pre Check List
+
+1. Outputs show executions of the commands?____________________ %80
+
+ P1: fork    ==> show P1 childList as P2, which is in readyQueue
+     switch  ==> switch to�
+input command : [ls|cd|pwd|mkdir|rmdir|touch|symlink|link|unlink|open|read|lseek|write|close|cat|cp|mv|pfd|quit] read 0 500
+[main]: cmd=read src=0 dest=500
+[read_file]: Reading fd=0
+[myread]: fd=0 offset=1000 bytes=500
+[myread]: direct block
+[myread]: offset=1000 min=24 blk=514
+[myread]: nbytes=24 len(buf)=454 text= run P2
+		  
+ P2: fork; w file contents
+
+// PIPES
+cat file | grep printf         : show lines containing printf
+
+cat < file | grep printf > out : show pipe with I/O redirection
+
+cat file | grep printf | more  : two pipes
+      
+cat file | cat | cat | grep printf : multiple pipes
+<html>
+<body>
+<pre>
+                    LAB2pre Check List
+
+1. Outputs show executions of the commands?____________________ %80
+
+ P1: fork    ==> show P1 childList as P�d;��
+[myread]: direct block
+[myread]: offset=1024 min=476 blk=515
+[myread]: nbytes=500 len(buf)=478 text=fork; ==> show P2 childList as P3->P4, which are in readyQueue
+     exit        ==> P2 become a ZOMBIE => switch to P1
+
+ P1:                 show P1 childList as P2->P3->P4
+ P1: wait        ==> find ZOMBIE P2 and put it into freeList
+     wait        ==> P1 should sleep in wait(), until a child becomes ZOMBIE
+                    (P1 sleeps, not runable, so switch to P3)
+		  
+ P3: exit        ==> wakeup P1, which will FREE the ZOMBIE P3.
+
+2. Used function pointers to invok�
+input command : [ls|cd|pwd|mkdir|rmdir|touch|symlink|link|unlink|open|read|lseek|write|close|cat|cp|mv|pfd|quit] open file1 1   
+[main]: cmd=open src=file1 dest=1
+[open_file]: i_mode=1
+[getino]: pathname=file1
+[tokenize]: file1
+file1  
+[getino]: ===========================================
+[getino]: i=0 name[0]=file1
+[search]: for file1 in MINODE = [3, 2]
+[search]:  ino   rlen  nlen  name
+[search]:    2    12     1    .
+[search]:    2    12     2    ..
+[search]:   11    16     5    file1
+[search]: found file1 : ino = 11
+input command : [ls|cd|pwd|mkdir|rmdir|touch|symlink|link|unlink|open|read|lseek|write|close|cat|cp|mv|pfd|quit] pfd
+[main]: cmd=pfd src= dest=
+
+[pfd]:  fd   mode   offset   INODE
+[pfd]: ---- ------ -------- -------
+[pfd]:   0   READ  1500     [3, 13]
+[pfd]:   1  WRITE     0     [3, 11]
+
+input command : [ls|cd|pwd|mkdir|rmdir|touch|symlink|link|unlink|open|read|lseek|write|close|cat|cp|mv|pfd|quit] write
+[main]: cmd=write src= dest=
+
+[pfd]:  fd   mode   offset   INODE
+[pfd]: ---- ------ -------- -------
+[pfd]:   0   READ  1500     [3, 13]
+[pfd]:   1  WRITE     0     [3, 11]
+
+[write_file]: enter fd = 1
+[write_file]: enter text = abcdefghijklmnopqrstuvwxyz
+[mywrite]: 26 26
+[mywrite]: Direct Block
+[balloc]: allocated block = 36
+[mywrite]: Wrote 26 char into file descriptor fd=1
+input command : [ls|cd|pwd|mkdir|rmdir|touch|symlink|link|unlink|open|read|lseek|write|close|cat|cp|mv|pfd|quit] cat file1
+[main]: cmd=cat src=file1 dest=
+[open_file]: i_mode=0
+[getino]: pathname=file1
+[tokenize]: file1
+file1  
+[getino]: ===========================================
+[getino]: i=0 name[0]=file1
+[search]: for file1 in MINODE = [3, 2]
+[search]:  ino   rlen  nlen  name
+[search]:    2    12     1    .
+[search]:    2    12     2    ..
+[search]:   11    16     5    file1
+[search]: found file1 : ino = 11
+[cat_file]:
+
+abcdefghijklmnopqrstuvwxyz[cat_file]: Read 26 bytes.
+
+input command : [ls|cd|pwd|mkdir|rmdir|touch|symlink|link|unlink|open|read|lseek|write|close|cat|cp|mv|pfd|quit] q
+[main]: cmd=q src= dest=
+[iput]: inode_start=10
+[iput]: block=11, offset=4
+[iput]: inode_start=10
+[iput]: block=11, offset=2
